@@ -1,3 +1,5 @@
+import json
+
 with open("data/general.json") as file:
     data = json.load(file)
 
