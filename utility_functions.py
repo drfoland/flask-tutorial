@@ -1,8 +1,10 @@
 import json
 
-with open("data/general.json") as file:
-    data = json.load(file)
-
-def write_data(data):
-    with open("data/general.json", 'w') as file:
+def read_data(filename):
+    with open(f"data/{filename}.json") as file:
+        data = json.load(file)
+    return data
+    
+def write_data(data, filename):
+    with open(f"data/{filename}.json", 'w') as file:
         json.dump(data, file)

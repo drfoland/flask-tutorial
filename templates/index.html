@@ -1,9 +1,13 @@
 <html>
 	<head>
-		<title>Flask Home</title>
+		<title>Flask Tutorial Home</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+		<script src="{{ url_for('static', filename='js/test.js') }}"></script>
 	</head>
 	<body>
 		<h1>Hello World!</h1>
 		<p>This page has been accessed {{counter}} times.</p>
-	</body>
+		<a href="/login">Login</a> / <a href="/create">Create Account</a>
+	</body>	
+	
 </html>
