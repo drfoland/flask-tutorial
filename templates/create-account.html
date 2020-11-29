@@ -1,0 +1,55 @@
+<html>
+	<head>
+		<title>Flask Tutorial Home</title>
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+		<script>
+			function create_account() {
+				const http = new XMLHttpRequest();
+				const url = "http://127.0.0.1:5000/create";
+				
+				http.open("POST", url);
+							
+				http.onreadystatechange = function() {
+					if(this.readyState==4) { // Make sure we have received a response
+						var status = document.getElementById("create-status");
+						if(this.status==201) { // Make sure the response is good.
+							status.classList.add("success");
+							status.classList.remove("failure");
+							status.innerHTML = "Account successfully created.";
+							setTimeout(function() {
+								window.location.href = "http://127.0.0.1:5000/login";
+								}, 1500);
+						} else {
+							status.classList.add("failure");
+							status.classList.remove("success");
+							if (this.status==409) {
+								status.innerHTML = "Account already exists.";
+							} else {
+								status.innerHTML = "Something went wrong. Try again later.";
+							}
+						} 
+						
+					}
+				}
+				
+				var formData = new FormData();	
+				formData.append("username", document.getElementById('username').value);
+				formData.append("password", document.getElementById('password').value);
+				http.send(formData);
+				
+			}
+		</script>
+	</head>
+	<body>
+		<h1>Create Account</h1>
+		<form action="javascript:;" onsubmit="create_account()">
+		  <label for="username">Username:</label><br>
+		  <input type="text" id="username" placeholder=""><br>
+		  <label for="password">Password:</label><br>
+		  <input type="password" id="password" placeholder=""><br><br>
+		  <input type="submit" value="Submit">
+		</form>
+		<div id="create-status"></div>
+	</body>	
+	
+</html>

@@ -1,0 +1,16 @@
+body {
+	background: #eeeeee;
+}
+
+#create-status {
+	font-style: italic;
+	font-weight: bold;
+}
+
+#create-status.success {
+	color: #00d800;
+}
+
+#create-status.failure {
+	color: #d80000;
+}
